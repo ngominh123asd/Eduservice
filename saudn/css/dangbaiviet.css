@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+
+body {
+    font-family: "Lexend", sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #E8F5E9;
+}
+
+
+
+
+header {
+    background: #2E7D32;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    position: relative;
+    z-index: 10;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+
+
+
+nav ul li {
+    position: relative;
+}
+
+
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+}
+
+
+
+
+nav ul li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+nav a::after {
+    content: " ▼";
+    font-size: 10px;
+    vertical-align: middle;
+}
+/* Container form */
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: black;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Form styling */
+.form-post label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: black;
+}
+
+.form-post input[type="text"],
+.form-post textarea {
+    font-family: "Lexend", sans-serif;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #c8e6c9;
+    margin-bottom: 20px;
+    font-size: 16px;
+    background-color: white;
+    resize: vertical;
+}
+.btn-dangbai {
+    background-color: #2E7D32;
+    color: white;
+    padding: 12px 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-dangbai:hover {
+    background-color: #1B5E20;
+}
+
+.error {
+    color: #d32f2f;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.footer {
+    background-color: #2E7D32;
+    color: #fff;
+    padding: 40px 0;
+    font-family: "Lexend", sans-serif;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-column p {
+    margin: 6px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-column a {
+    color: #BBDEFB;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #fff;
+    text-decoration: underline;
+}

@@ -1,0 +1,2357 @@
+/* E-Portfolio Styles - Flow Theme */
+
+.eportfolio-container {
+    min-height: auto; /* Thay đổi từ 100vh - cho phép co giãn theo nội dung */
+    background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #E3F2FD 100%);
+    padding: 40px 20px 60px;
+    position: relative;
+    overflow-x: hidden;
+    transition: min-height 0.3s ease; /* Smooth transition khi thay đổi chiều cao */
+}
+
+/* Animated Background Waves */
+.eportfolio-container::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(46, 125, 50, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: flowBackground 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes flowBackground {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(360deg); }
+}
+
+.eportfolio-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    /* Đảm bảo wrapper co theo nội dung */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px; /* Thêm padding để có không gian khi kéo thả */
+}
+
+/* Scroll Animation */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-reveal-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hero Section */
+.portfolio-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: 30px;
+    padding: 80px 40px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 60px rgba(46, 125, 50, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.portfolio-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: heroWave 15s ease-in-out infinite;
+}
+
+@keyframes heroWave {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-30px, -30px) scale(1.1); }
+}
+
+.hero-avatar-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 24px;
+}
+
+.hero-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    color: var(--primary-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-upload-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: 3px solid white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-upload-btn:hover {
+    transform: scale(1.1);
+    background: var(--primary-dark);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+    font-size: 22px;
+    opacity: 0.95;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-quote {
+    font-size: 17px;
+    font-style: italic;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 32px auto 0;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    border-left: 4px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+}
+
+/* Stats Cards - Better Layout */
+.portfolio-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    margin-bottom: 48px;
+}
+
+.stat-card-flow {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 36px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card-flow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(46, 125, 50, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.stat-card-flow:hover::before {
+    left: 100%;
+}
+
+.stat-card-flow:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(46, 125, 50, 0.25);
+}
+
+.stat-icon-flow {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.stat-number-flow {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.stat-label-flow {
+    font-size: 17px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Section Styles - Better Spacing */
+.portfolio-section {
+    background: var(--card-bg);
+    border-radius: 28px;
+    padding: 48px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 0;
+    background: linear-gradient(180deg, var(--primary-color), var(--primary-light));
+    transition: height 0.8s ease;
+}
+
+.portfolio-section.revealed::before {
+    height: 100%;
+}
+
+.section-title-flow {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.section-title-flow i {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    animation: rotateIcon 3s ease-in-out infinite;
+}
+
+@keyframes rotateIcon {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* Timeline - Improved */
+.timeline-flow {
+    position: relative;
+    padding-left: 60px;
+}
+
+.timeline-flow::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--primary-light), transparent);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 48px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -44px;
+    top: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 4px solid var(--card-bg);
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.2);
+    z-index: 2;
+}
+
+.timeline-content {
+    background: var(--background);
+    padding: 28px;
+    border-radius: 20px;
+    border-left: 5px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(12px);
+    box-shadow: 0 12px 32px rgba(46, 125, 50, 0.2);
+}
+
+.timeline-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.timeline-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: var(--text-secondary);
+}
+
+.timeline-meta i {
+    color: var(--primary-color);
+    margin-right: 8px;
+}
+
+.timeline-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.timeline-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+    color: #2E7D32;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Skills Grid - Better Cards */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.skill-card {
+    background: var(--background);
+    padding: 32px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.skill-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(46, 125, 50, 0.2);
+}
+
+.skill-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.skill-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.skill-level {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Evidence Gallery - Masonry Layout */
+.evidence-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+}
+
+.evidence-card {
+    background: var(--background);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.evidence-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(46, 125, 50, 0.25);
+}
+
+.evidence-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    color: var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.evidence-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.evidence-card:hover .evidence-image img {
+    transform: scale(1.1);
+}
+
+.evidence-content {
+    padding: 24px;
+}
+
+.evidence-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.evidence-date {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Feedback Cards */
+.feedback-grid {
+    display: grid;
+    gap: 28px;
+}
+
+.feedback-card {
+    background: linear-gradient(135deg, #F0F7FF, #E3F2FD);
+    padding: 32px;
+    border-radius: 20px;
+    border-left: 5px solid #2196F3;
+    position: relative;
+}
+
+.feedback-card::before {
+    content: '"';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 72px;
+    color: rgba(33, 150, 243, 0.15);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.feedback-text {
+    color: var(--text-primary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    padding-left: 48px;
+    font-size: 16px;
+}
+
+.feedback-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-left: 48px;
+}
+
+.feedback-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.feedback-info {
+    flex: 1;
+}
+
+.feedback-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.feedback-role {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Contact Section - Grid Layout */
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.contact-card {
+    background: var(--background);
+    padding: 32px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.contact-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(46, 125, 50, 0.2);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.contact-label {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.contact-value {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-word;
+}
+
+/* Edit Mode Buttons */
+.edit-mode {
+    position: fixed;
+    bottom: 140px; /* Tăng từ 32px lên 140px để thẳng hàng với AI buttons */
+    right: 32px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.edit-btn, .customize-btn, .cover-add-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    box-shadow: 0 8px 24px rgba(46, 125, 50, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.edit-btn:hover, .customize-btn:hover, .cover-add-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 32px rgba(46, 125, 50, 0.6);
+}
+
+.edit-btn.active {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 8px 24px rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        box-shadow: 0 12px 40px rgba(76, 175, 80, 0.8);
+    }
+}
+
+.customize-btn {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    box-shadow: 0 8px 24px rgba(33, 150, 243, 0.4);
+}
+
+.customize-btn:hover {
+    box-shadow: 0 12px 32px rgba(33, 150, 243, 0.6);
+}
+
+.cover-add-btn {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    box-shadow: 0 8px 24px rgba(255, 152, 0, 0.4);
+}
+
+.cover-add-btn:hover {
+    box-shadow: 0 12px 32px rgba(255, 152, 0, 0.6);
+}
+
+/* Cover Upload Button - Inside Hero */
+.cover-upload-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.cover-upload-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Tooltip for buttons */
+.edit-btn::after,
+.customize-btn::after,
+.cover-add-btn::after {
+    content: attr(title);
+    position: absolute;
+    right: 75px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.edit-btn:hover::after,
+.customize-btn:hover::after,
+.cover-add-btn:hover::after {
+    opacity: 1;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .edit-mode {
+        bottom: 120px; /* Điều chỉnh cho mobile */
+        right: 20px;
+    }
+    
+    .edit-btn, .customize-btn, .cover-add-btn {
+        width: 56px;
+        height: 56px;
+        font-size: 22px;
+    }
+    
+    .edit-btn::after,
+    .customize-btn::after,
+    .cover-add-btn::after {
+        display: none; /* Ẩn tooltip trên mobile */
+    }
+}
+
+/* Responsive - Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .edit-mode {
+        bottom: 130px;
+        right: 28px;
+    }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .portfolio-hero {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .timeline-content,
+[data-theme="dark"] .skill-card,
+[data-theme="dark"] .evidence-card,
+[data-theme="dark"] .contact-card {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .feedback-card {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(33, 150, 243, 0.05));
+}
+
+[data-theme="dark"] .stat-card-flow {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Customize Modal */
+.customize-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.customize-modal.active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.customize-modal .modal-content {
+    background: white;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    animation: modalSlideIn 0.3s ease;
+    position: relative;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.customize-modal .modal-header {
+    padding: 32px;
+    border-bottom: 2px solid rgba(46, 125, 50, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 24px 24px 0 0;
+}
+
+.customize-modal .modal-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+}
+
+.customize-modal .modal-header h2 i {
+    color: var(--primary-color);
+}
+
+.customize-modal .modal-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #666;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.customize-modal .modal-close:hover {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+    transform: rotate(90deg);
+}
+
+.customize-modal .modal-body {
+    padding: 32px;
+    background: white;
+}
+
+.customize-modal .customize-section {
+    margin-bottom: 40px;
+}
+
+.customize-modal .customize-section:last-child {
+    margin-bottom: 0;
+}
+
+.customize-modal .customize-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.customize-modal .customize-section h3 i {
+    color: var(--primary-color);
+}
+
+.customize-modal .theme-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+}
+
+.customize-modal .theme-option {
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid #e0e0e0;
+    position: relative;
+    background: white;
+}
+
+.customize-modal .theme-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-light);
+}
+
+.customize-modal .theme-option.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 16px rgba(46, 125, 50, 0.3);
+}
+
+.customize-modal .theme-option.active::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.4);
+}
+
+.customize-modal .theme-preview {
+    height: 80px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.customize-modal .theme-option[data-theme="default"] .theme-preview {
+    background: linear-gradient(135deg, #E8F5E9 0%, #E3F2FD 100%);
+}
+
+.customize-modal .theme-option[data-theme="ocean"] .theme-preview {
+    background: linear-gradient(135deg, #E3F2FD 0%, #90CAF9 100%);
+}
+
+.customize-modal .theme-option[data-theme="sunset"] .theme-preview {
+    background: linear-gradient(135deg, #FFE0B2 0%, #FFAB91 100%);
+}
+
+.customize-modal .theme-option[data-theme="forest"] .theme-preview {
+    background: linear-gradient(135deg, #C8E6C9 0%, #81C784 100%);
+}
+
+.customize-modal .theme-option[data-theme="lavender"] .theme-preview {
+    background: linear-gradient(135deg, #E1BEE7 0%, #BA68C8 100%);
+}
+
+.customize-modal .theme-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.customize-modal .btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.customize-modal .btn-customize {
+    flex: 1;
+    min-width: 180px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 2px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.customize-modal .btn-customize i {
+    font-size: 18px;
+}
+
+.customize-modal .btn-customize:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(46, 125, 50, 0.3);
+}
+
+.customize-modal .btn-customize.danger {
+    border-color: #f44336;
+    color: #f44336;
+}
+
+.customize-modal .btn-customize.danger:hover {
+    background: #f44336;
+    color: white;
+    box-shadow: 0 8px 16px rgba(244, 67, 54, 0.3);
+}
+
+/* Scrollbar for modal */
+.customize-modal .modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.customize-modal .modal-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+}
+
+.customize-modal .modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 12px;
+}
+
+.customize-modal .modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .customize-modal .modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .customize-modal .modal-header {
+        padding: 24px 20px;
+    }
+    
+    .customize-modal .modal-header h2 {
+        font-size: 22px;
+    }
+    
+    .customize-modal .modal-body {
+        padding: 24px 20px;
+    }
+    
+    .customize-modal .theme-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .customize-modal .theme-option {
+        padding: 16px;
+    }
+    
+    .customize-modal .theme-preview {
+        height: 60px;
+    }
+    
+    .customize-modal .btn-group {
+        flex-direction: column;
+    }
+    
+    .customize-modal .btn-customize {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .customize-modal .modal-content {
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+    
+    .customize-modal .modal-header {
+        padding: 20px 16px;
+        border-radius: 0;
+    }
+    
+    .customize-modal .modal-header h2 {
+        font-size: 20px;
+    }
+    
+    .customize-modal .modal-body {
+        padding: 20px 16px;
+    }
+    
+    .customize-modal .customize-section {
+        margin-bottom: 32px;
+    }
+}
+
+/* ========================================
+   NEW SECTION DESIGNS FOR E-PORTFOLIO
+   ======================================== */
+
+/* Section Header New Style */
+.section-header-new {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid rgba(46, 125, 50, 0.1);
+}
+
+.section-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.section-icon-wrapper.journey-icon {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+.section-icon-wrapper.skills-icon {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+}
+
+.section-icon-wrapper.evidence-icon {
+    background: linear-gradient(135deg, #2196F3, #1565C0);
+}
+
+.section-icon-wrapper.contact-icon {
+    background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+}
+
+.section-title-wrapper {
+    flex: 1;
+}
+
+.section-title-wrapper h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.section-add-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.section-add-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+}
+
+/* Portfolio Gallery */
+.portfolio-gallery {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 32px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.portfolio-gallery.single {
+    grid-template-columns: 1fr;
+}
+
+.portfolio-gallery.single .gallery-item {
+    height: 400px;
+}
+
+.portfolio-gallery.double {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.portfolio-gallery.double .gallery-item {
+    height: 300px;
+}
+
+.portfolio-gallery.multi {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+}
+
+.portfolio-gallery.multi .gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: visible;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+/* Gallery folder không có img trực tiếp, dùng stack-image */
+.gallery-folder > img {
+    display: none;
+}
+
+.gallery-item:not(.gallery-folder) > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:not(.gallery-folder):hover img {
+    transform: scale(1.1);
+}
+
+/* Hover effect cho stack images */
+.gallery-folder:hover .stack-image.active {
+    transform: scale(1.02);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+    border-radius: 0 0 16px 16px;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Gallery folder overlay */
+.gallery-folder .gallery-overlay {
+    z-index: 10;
+}
+
+.gallery-caption {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+}
+
+.gallery-date {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.gallery-delete-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(244, 67, 54, 0.9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.gallery-item:hover .gallery-delete-btn {
+    opacity: 1;
+}
+
+.gallery-delete-btn:hover {
+    background: #f44336;
+    transform: scale(1.1);
+}
+
+/* Journey Cards */
+.journey-timeline {
+    display: grid;
+    gap: 24px;
+}
+
+.journey-card {
+    background: var(--background);
+    border-radius: 20px;
+    padding: 28px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.journey-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 12px 32px rgba(46, 125, 50, 0.15);
+}
+
+.journey-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.journey-date-badge,
+.journey-score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.journey-date-badge {
+    background: rgba(46, 125, 50, 0.1);
+    color: var(--primary-color);
+}
+
+.journey-score-badge {
+    background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+    color: #F57C00;
+}
+
+.journey-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+}
+
+.journey-org {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.journey-org i {
+    color: var(--primary-color);
+}
+
+.journey-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.journey-feedback {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(33, 150, 243, 0.08);
+    border-radius: 12px;
+    border-left: 3px solid #2196F3;
+}
+
+.journey-feedback i {
+    color: #2196F3;
+    margin-top: 4px;
+}
+
+.journey-feedback p {
+    margin: 0;
+    color: var(--text-primary);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* Skills Showcase */
+.skills-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.skill-category-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: var(--background);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.skill-category-card:hover {
+    border-color: var(--skill-color);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.skill-category-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--skill-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.skill-category-content {
+    flex: 1;
+}
+
+.skill-category-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+}
+
+.skill-progress {
+    height: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.skill-progress-bar {
+    height: 100%;
+    background: var(--skill-color);
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+.skill-count {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Certificate Gallery */
+.certificate-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.certificate-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: visible;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.certificate-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Certificate folder không có img trực tiếp */
+.certificate-item.gallery-folder > img {
+    display: none;
+}
+
+.certificate-item:not(.gallery-folder) > img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+}
+
+/* Stack container trong certificate */
+.certificate-item .stack-container {
+    height: 160px;
+    overflow: visible;
+}
+
+.certificate-info {
+    position: relative;
+    z-index: 10;
+    padding: 16px;
+    background: white;
+    border-radius: 0 0 16px 16px;
+    margin-top: 160px;
+}
+
+.certificate-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+}
+
+.certificate-info span {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* Evidence Masonry */
+.evidence-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    grid-auto-rows: 220px;
+}
+
+.evidence-masonry.few-items {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 280px;
+}
+
+.evidence-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--background);
+}
+
+/* Evidence folder cần overflow visible cho stack effect */
+.evidence-item.gallery-folder {
+    overflow: visible;
+}
+
+/* Evidence folder không có img trực tiếp */
+.evidence-item.gallery-folder > img {
+    display: none;
+}
+
+.evidence-item:not(.gallery-folder) > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 20px;
+}
+
+.evidence-item:not(.gallery-folder):hover img {
+    transform: scale(1.1);
+}
+
+/* Stack container trong evidence - full height */
+.evidence-item.gallery-folder .stack-container {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+/* Hover effect cho evidence stack */
+.evidence-item.gallery-folder:hover .stack-image.active {
+    transform: scale(1.02);
+}
+
+.evidence-item.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+}
+
+.file-preview {
+    font-size: 64px;
+    color: #f44336;
+}
+
+.evidence-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+    border-radius: 0 0 20px 20px;
+}
+
+.evidence-item:hover .evidence-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Đảm bảo gallery-folder overlay cũng hoạt động đúng */
+.evidence-item.gallery-folder .evidence-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+}
+
+.evidence-item.gallery-folder:hover .evidence-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.evidence-overlay p {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+}
+
+.evidence-overlay span {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* Contact Layout */
+.contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.contact-info-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: var(--background);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.contact-info-icon.email-icon {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+.contact-info-icon.phone-icon {
+    background: linear-gradient(135deg, #2196F3, #1565C0);
+}
+
+.contact-info-icon.address-icon {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+}
+
+.contact-info-content label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-info-content p {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    word-break: break-word;
+}
+
+.contact-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.contact-photo {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 1;
+}
+
+.contact-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.contact-photo:hover img {
+    transform: scale(1.1);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Empty Section State */
+.empty-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--background);
+    border-radius: 20px;
+    border: 2px dashed rgba(0, 0, 0, 0.1);
+}
+
+.empty-section i {
+    font-size: 56px;
+    color: var(--text-secondary);
+    opacity: 0.3;
+    margin-bottom: 20px;
+}
+
+.empty-section p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 0 0 8px 0;
+}
+
+.empty-section span {
+    font-size: 14px;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* Image Lightbox */
+.image-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.image-lightbox.active {
+    display: flex;
+}
+
+.image-lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.image-lightbox p {
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-header-new {
+        flex-wrap: wrap;
+    }
+    
+    .section-icon-wrapper {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+    }
+    
+    .section-title-wrapper h2 {
+        font-size: 24px;
+    }
+    
+    .portfolio-gallery.multi {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 150px;
+    }
+    
+    .portfolio-gallery.multi .gallery-item:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    
+    .skills-showcase {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Thêm vào cuối file CSS của bạn */
+
+.resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    cursor: nwse-resize;
+    background: linear-gradient(135deg, transparent 50%, rgba(46, 125, 50, 0.5) 50%);
+    border-radius: 0 0 12px 0;
+    z-index: 10;
+}
+
+.resize-handle:hover {
+    background: linear-gradient(135deg, transparent 50%, rgba(46, 125, 50, 0.8) 50%);
+}
+
+.draggable-card.resizing {
+    user-select: none;
+}
+
+.draggable-card {
+    min-width: 150px;
+    min-height: 80px;
+    /* Không dùng height: auto !important - cho phép resize */
+    box-sizing: border-box;
+}
+
+/* Loại bỏ khoảng trống khi card ở vị trí mặc định */
+.draggable-card:not([style*="left"]):not([style*="top"]) {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+}
+
+/* Chỉ cho phép scroll ở các section có nội dung dài, không áp dụng cho hero và stats */
+.portfolio-section.draggable-card {
+    overflow: visible;
+}
+
+/* Hero và Stats không có scroll */
+.portfolio-hero.draggable-card,
+.portfolio-stats.draggable-card {
+    overflow: visible;
+}
+
+/* Color picker button styles */
+.color-picker-btn {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(156, 39, 176, 0.9);
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.color-picker-btn:hover {
+    transform: scale(1.1);
+    background: rgba(156, 39, 176, 1);
+}
+
+.color-picker-btn-small {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(156, 39, 176, 0.9);
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+}
+
+.stat-icon-flow:hover .color-picker-btn-small {
+    opacity: 1;
+}
+
+.color-picker-btn-small:hover {
+    transform: scale(1.15);
+    background: rgba(156, 39, 176, 1);
+}
+
+/* Edit mode indicator */
+.draggable-card[style*="cursor: move"] {
+    outline: 2px dashed rgba(46, 125, 50, 0.3);
+    outline-offset: 4px;
+}
+
+.draggable-card[style*="cursor: move"]:hover {
+    outline-color: rgba(46, 125, 50, 0.6);
+}
+
+/* Fix cho các card có nội dung overflow */
+.portfolio-section .timeline-flow,
+.portfolio-section .skills-grid,
+.portfolio-section .evidence-gallery,
+.portfolio-section .feedback-grid,
+.portfolio-section .contact-cards {
+    overflow: visible;
+}
+
+/* Section cuối cùng không có margin bottom */
+.portfolio-section:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Đảm bảo contact section (thường là cuối) không có margin */
+.portfolio-section[data-card-id="contact"] {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   GALLERY FOLDER STACK EFFECT
+   ======================================== */
+
+/* Gallery Folder với Stack Effect */
+.gallery-folder {
+    position: relative;
+}
+
+.gallery-folder.has-stack {
+    /* Thêm padding để có chỗ cho stack layers */
+    margin-top: 8px;
+    margin-left: 8px;
+}
+
+/* ========================================
+   STACK CAROUSEL - Xếp chồng như tấm kính
+   ======================================== */
+
+/* Container cho stack images */
+.stack-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: visible;
+}
+
+/* Mỗi ảnh trong stack */
+.stack-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: inherit;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform-origin: center center;
+}
+
+/* Ảnh đầu tiên (active) - hiển thị bình thường */
+.stack-image.active {
+    z-index: 3;
+    transform: rotate(0deg) translate(0, 0) scale(1);
+    opacity: 1;
+    filter: none;
+}
+
+/* Ảnh thứ 2 - hơi chéo sang phải (giảm độ xòe) */
+.stack-image[data-index="1"]:not(.active) {
+    z-index: 2;
+    transform: rotate(2deg) translate(4px, -3px) scale(0.98);
+    opacity: 0.75;
+    filter: brightness(0.95);
+}
+
+/* Ảnh thứ 3 - chéo thêm nữa (giảm độ xòe) */
+.stack-image[data-index="2"]:not(.active) {
+    z-index: 1;
+    transform: rotate(4deg) translate(8px, -6px) scale(0.96);
+    opacity: 0.55;
+    filter: brightness(0.9);
+}
+
+/* Hiệu ứng kính (glass) */
+.stack-image:not(.active)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* Animation khi chuyển ảnh - ảnh cũ đi ra sau */
+.stack-image.to-back {
+    z-index: 0 !important;
+    transform: rotate(5deg) translate(10px, -8px) scale(0.94);
+    opacity: 0.4;
+    filter: brightness(0.85);
+}
+
+/* Animation khi chuyển ảnh - ảnh mới lên trước */
+.stack-image.from-back {
+    animation: slideToFront 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideToFront {
+    0% {
+        transform: rotate(2deg) translate(4px, -3px) scale(0.98);
+        opacity: 0.75;
+    }
+    100% {
+        transform: rotate(0deg) translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Hover effect - các ảnh xòe ra nhẹ */
+.gallery-folder.has-stack:hover .stack-image[data-index="1"]:not(.active) {
+    transform: rotate(3deg) translate(6px, -5px) scale(0.97);
+}
+
+.gallery-folder.has-stack:hover .stack-image[data-index="2"]:not(.active) {
+    transform: rotate(6deg) translate(12px, -9px) scale(0.95);
+}
+
+/* Điều chỉnh cho folder có stack - tăng không gian để không bị cắt */
+.gallery-folder.has-stack {
+    margin-right: 20px;
+    margin-top: 12px;
+    overflow: visible;
+}
+
+/* Badge hiển thị số lượng ảnh */
+.gallery-folder[data-count]::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    color: white;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4);
+}
+
+.gallery-folder[data-count="1"]::after {
+    display: none;
+}
+
+/* Folder Actions trong Edit Mode */
+.folder-actions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.gallery-folder:hover .folder-actions {
+    opacity: 1;
+}
+
+.folder-add-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(46, 125, 50, 0.9);
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.folder-add-btn:hover {
+    background: #2E7D32;
+    transform: scale(1.1);
+}
+
+/* Gallery Count Badge */
+.gallery-count,
+.evidence-count,
+.cert-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-top: 4px;
+}
+
+/* Certificate Gallery với Stack */
+.certificate-item.gallery-folder.has-stack {
+    margin-top: 15px;
+    margin-right: 30px;
+}
+
+.certificate-item .stack-container {
+    border-radius: 16px;
+}
+
+.certificate-item .stack-image {
+    border-radius: 16px;
+}
+
+/* Evidence Item với Stack */
+.evidence-item.gallery-folder.has-stack {
+    margin-top: 15px;
+    margin-right: 30px;
+}
+
+.evidence-item .stack-container {
+    border-radius: 20px;
+}
+
+.evidence-item .stack-image {
+    border-radius: 20px;
+}
+
+/* ========================================
+   LIGHTBOX NAVIGATION
+   ======================================== */
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+    left: 24px;
+}
+
+.lightbox-next {
+    right: 24px;
+}
+
+/* Lightbox Counter */
+.lightbox-counter {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* Responsive cho lightbox nav */
+@media (max-width: 768px) {
+    .lightbox-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+    
+    .lightbox-prev {
+        left: 12px;
+    }
+    
+    .lightbox-next {
+        right: 12px;
+    }
+    
+    /* Stack effect nhỏ hơn trên mobile */
+    .stack-image[data-index="1"]:not(.active) {
+        transform: rotate(3deg) translateX(6px) translateY(-4px);
+    }
+    
+    .stack-image[data-index="2"]:not(.active) {
+        transform: rotate(6deg) translateX(12px) translateY(-8px);
+    }
+    
+    .gallery-folder.has-stack,
+    .certificate-item.gallery-folder.has-stack,
+    .evidence-item.gallery-folder.has-stack {
+        margin-top: 10px;
+        margin-right: 20px;
+    }
+}

@@ -1,0 +1,14 @@
+Student account
+- a@vnu.edu.vn
+- g2!yBjITSfiD
+
+- anh@vnu.edu.vn
+- !gF5nyqZVxv8
+
+Teacher account
+- b@vnu.edu.vn
+- dZ3fcztZCmjU
+
+Admin account
+- admin@vnu.edu.vn
+- admin

@@ -1,0 +1,12 @@
+{
+    "php.validate.executablePath": "C:\\php\\php.exe",
+    "php.debug.executablePath": "C:\\php\\php.exe",
+    "php.suggest.basic": true,
+    "python-envs.pythonProjects": [
+        {
+            "path": "vendor",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDUSERVICE</title>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="huongdan.css">
+    <link rel="stylesheet" href="/components/header.css">
+    <link rel="stylesheet" href="/components/footer.css">
+    <link rel="stylesheet" href="/components/layout.css">
+    <style>  
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="content-section">
+        <p><strong>"Chung tay tham gia – Lan tỏa hành động tích cực!"</strong></p>
+        <a href="https://sites.google.com/view/huongdandangkythamgia?usp=sharing" class="register-btn" target="_blank">Cách tham gia</a>
+    </section>
+    <section class="content-section">
+        <p><strong>"Giải đáp mọi thắc mắc – Sẵn sàng hành động!"</strong></p>
+        <a href="https://sites.google.com/view/cauhoithuonggap/trang-ch%E1%BB%A7" class="register-btn" target="_blank">Câu hỏi thường gặp</a>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        fetch('/components/header.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+
+        fetch('/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+    <script src="/components/darkmode.js"></script>
+    <script src="/components/auth.js"></script>
+</body>
+</html>

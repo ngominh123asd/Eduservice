@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn sử dụng | EDUSERVICE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/components/footer.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #2E7D32;
+            --primary-dark: #1B5E20;
+            --primary-light: #4CAF50;
+            --accent-color: #FF6B35;
+            --background: #E8F5E9;
+            --card-bg: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            padding: 80px 24px 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .guide-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .guide-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+        }
+
+        .guide-header .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Quick Start Section */
+        .quick-start {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 48px;
+            margin-bottom: 48px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .quick-start h2 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quick-start h2 i {
+            font-size: 36px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: transform 0.5s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(46, 125, 50, 0.3);
+        }
+
+        .step-card:hover::before {
+            transform: translate(-25%, -25%);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        /* Features Section */
+        .features-section {
+            margin-bottom: 48px;
+        }
+
+        .features-section h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .feature-card ul li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-card ul li i {
+            color: var(--primary-color);
+            margin-top: 4px;
+            font-size: 14px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 48px;
+            margin-bottom: 48px;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-section h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-color);
+        }
+
+        .faq-question i {
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            margin-top: 16px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            border-radius: 24px;
+            padding: 60px 48px;
+            text-align: center;
+            color: white;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .guide-header h1 {
+                font-size: 36px;
+            }
+
+            .quick-start,
+            .faq-section,
+            .cta-section {
+                padding: 32px 24px;
+            }
+
+            .steps-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <div class="container">
+            <!-- Header -->
+            <div class="guide-header">
+                <h1><i class="fas fa-book-reader"></i> Hướng dẫn sử dụng EDUSERVICE</h1>
+                <p class="subtitle">Khám phá hệ thống quản lý giáo dục hiện đại, kết nối giáo viên và học sinh</p>
+            </div>
+
+            <!-- Quick Start -->
+            <div class="quick-start">
+                <h2><i class="fas fa-rocket"></i> Bắt đầu nhanh</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Đăng ký tài khoản</h3>
+                        <p>Tạo tài khoản miễn phí với email hoặc số điện thoại</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Chọn vai trò</h3>
+                        <p>Chọn vai trò Giáo viên hoặc Học sinh phù hợp với bạn</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Hoàn thiện hồ sơ</h3>
+                        <p>Điền thông tin cá nhân để trải nghiệm tốt nhất</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Bắt đầu học tập</h3>
+                        <p>Tham gia lớp học và bắt đầu hành trình của bạn</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features-section">
+                <h2>Tính năng nổi bật</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Dành cho Giáo viên</h3>
+                        <p>Công cụ mạnh mẽ để quản lý và giảng dạy hiệu quả</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Tạo và quản lý lớp học</li>
+                            <li><i class="fas fa-check-circle"></i> Giao bài tập, dự án</li>
+                            <li><i class="fas fa-check-circle"></i> Chấm điểm tự động</li>
+                            <li><i class="fas fa-check-circle"></i> Theo dõi tiến độ học sinh</li>
+                            <li><i class="fas fa-check-circle"></i> Báo cáo thống kê chi tiết</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3>Dành cho Học sinh</h3>
+                        <p>Học tập linh hoạt, tiện lợi mọi lúc mọi nơi</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Tham gia lớp học trực tuyến</li>
+                            <li><i class="fas fa-check-circle"></i> Nộp bài tập, dự án</li>
+                            <li><i class="fas fa-check-circle"></i> Xem điểm và nhận xét</li>
+                            <li><i class="fas fa-check-circle"></i> Theo dõi tiến độ cá nhân</li>
+                            <li><i class="fas fa-check-circle"></i> Tương tác với cộng đồng</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI Hỗ trợ học tập</h3>
+                        <p>Trợ lý AI thông minh giúp học tập hiệu quả hơn</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Giải đáp thắc mắc 24/7</li>
+                            <li><i class="fas fa-check-circle"></i> Tư vấn lộ trình học tập</li>
+                            <li><i class="fas fa-check-circle"></i> Gợi ý tài liệu phù hợp</li>
+                            <li><i class="fas fa-check-circle"></i> Phân tích điểm mạnh/yếu</li>
+                            <li><i class="fas fa-check-circle"></i> Luyện tập cá nhân hóa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h2>Câu hỏi thường gặp</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>EDUSERVICE là gì?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        EDUSERVICE là hệ thống quản lý giáo dục trực tuyến hiện đại, kết nối giáo viên và học sinh. Chúng tôi cung cấp công cụ toàn diện để giảng dạy, học tập và quản lý lớp học một cách hiệu quả.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>EDUSERVICE có miễn phí không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Có! EDUSERVICE cung cấp gói miễn phí với đầy đủ tính năng cơ bản. Bạn có thể nâng cấp lên gói Premium để trải nghiệm thêm nhiều tính năng nâng cao.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Làm thế nào để đăng ký tài khoản?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Nhấn vào nút "Đăng nhập" ở góc trên cùng, sau đó chọn "Đăng ký". Điền thông tin cần thiết và xác nhận email. Quá trình đăng ký chỉ mất vài phút!
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Tôi có thể đổi vai trò sau khi đăng ký không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Có, bạn có thể liên hệ với bộ phận hỗ trợ để thay đổi vai trò. Tuy nhiên, việc này sẽ cần xác minh lại thông tin để đảm bảo an toàn.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>EDUSERVICE có hỗ trợ trên mobile không?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Có! Website của chúng tôi được tối ưu hóa hoàn toàn cho mobile. Bạn có thể truy cập và sử dụng mọi tính năng trên điện thoại, máy tính bảng một cách thuận tiện.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Làm thế nào để liên hệ hỗ trợ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Bạn có thể liên hệ qua email: support@eduservice.vn hoặc gọi hotline: 1900-xxxx. Chúng tôi sẵn sàng hỗ trợ 24/7.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+                <h2>Sẵn sàng bắt đầu?</h2>
+                <p>Tham gia EDUSERVICE ngay hôm nay và trải nghiệm phương pháp học tập hiện đại</p>
+                <div class="cta-buttons">
+                    <a href="/dangnhap/dangnhap.php" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Đăng nhập ngay</span>
+                    </a>
+                    <a href="/gioithieu/gioithieu.html" class="btn btn-outline">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Tìm hiểu thêm</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load header
+        fetch('/components/header.php')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                
+                const links = doc.head.getElementsByTagName('link');
+                for(let link of links) {
+                    if(!document.querySelector(`link[href="${link.getAttribute('href')}"]`)) {
+                        document.head.appendChild(link.cloneNode(true));
+                    }
+                }
+                
+                document.getElementById('header-placeholder').innerHTML = doc.body.innerHTML;
+            });
+
+        // Load footer
+        fetch('/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script src="/components/darkmode.js"></script>
+</body>
+</html>

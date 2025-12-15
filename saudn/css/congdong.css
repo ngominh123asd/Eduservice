@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+
+body {
+    font-family: "Lexend", sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #E8F5E9;
+}
+
+
+
+
+header {
+    background: #2E7D32;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    position: relative;
+    z-index: 10;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+
+
+
+nav ul li {
+    position: relative;
+}
+
+
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+}
+
+
+
+
+nav ul li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+nav a::after {
+    content: " ▼";
+    font-size: 10px;
+    vertical-align: middle;
+}
+.container {
+    max-width: 900px;
+    margin: 40px auto 80px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 30px 40px;
+}
+
+.btn-dangbai {
+    display: inline-block;
+    background-color: #2E7D32;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-dangbai:hover {
+    background-color: #1B5E20;
+}
+
+h2 {
+    color: black;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.post {
+    border-bottom: 1px solid #c8e6c9;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.post:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.post h3 {
+    color: black;
+    margin: 0 0 8px;
+}
+
+.meta {
+    font-size: 14px;
+    color: black;
+    margin-bottom: 12px;
+}
+
+.meta strong {
+    font-weight: 600;
+}
+
+.content {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    font-size: 16px;
+    color: black;
+}
+.like-btn {
+    background-color: #fff0f5;
+    color: #d63384;
+    border: 1px solid #f5c2e7;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 8px;
+}
+
+.like-btn:hover {
+    background-color: #fde8f0;
+    transform: scale(1.05);
+}
+
+.like-count {
+    display: inline-block;
+    background-color: #d63384;
+    color: #fff;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 6px;
+    min-width: 20px;
+    text-align: center;
+}
+
+
+.no-posts {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    padding: 40px 0;
+}
+.post-image img {
+    margin-top: 10px;
+    border-radius: 8px;
+    max-height: 400px;
+    object-fit: cover;
+}
+.footer {
+    background-color: #2E7D32;
+    color: #fff;
+    padding: 40px 20px;
+    font-family: "Lexend", sans-serif;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-column p {
+    margin: 6px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-column a {
+    color: #BBDEFB;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Dark mode overrides for community page */
+[data-theme="dark"] .container {
+    background-color: #242424;
+    color: #E1E1E1;
+}
+
+[data-theme="dark"] .btn-dangbai {
+    background-color: #2E7D32;
+    color: white;
+    border: 1px solid rgba(46, 125, 50, 0.35);
+    /* Add hover effect */
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .btn-dangbai:hover {
+    background-color: #1B5E20;
+    border-color: #2E7D32;
+    transform: translateY(-1px);
+}
+
+[data-theme="dark"] .post h3 {
+    color: var(--green) !important;  /* Tiêu đề bài viết màu xanh */
+}
+
+[data-theme="dark"] .meta {
+    color: #E1E1E1;  /* Màu trắng cho metadata */
+}
+
+[data-theme="dark"] .content {
+    color: #E1E1E1;  /* Màu trắng cho nội dung */
+}
+
+[data-theme="dark"] .btn-dangbai {
+    background-color: var(--green);
+    color: white;
+    border-color: var(--green);
+}
+
+[data-theme="dark"] .like-btn {
+    background-color: transparent;
+    color: #E1E1E1;
+    border: 1px solid rgba(46,125,50,0.35);
+}
+
+[data-theme="dark"] .like-count {
+    color: #E1E1E1;
+}
+
+[data-theme="dark"] .no-posts {
+    color: #E1E1E1;
+}

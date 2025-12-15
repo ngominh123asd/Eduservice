@@ -1,0 +1,371 @@
+/* Dark mode variables */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --surface: #1E1E1E;
+  --card-dark: #1a1a1a;
+  --card-light: #252525;
+  --text: #FFFFFF;
+  --text-primary: #FFFFFF;
+  --text-secondary: #b0b0b0;
+  --text-dark: #FFFFFF;
+  --heading-dark: #4CAF50;
+  --primary-dark: #2E7D32;
+  --border-dark: #333333;
+}
+
+/* Header Styles */
+header {
+    background: #2E7D32;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Navigation */
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px;
+    display: block;
+    font-size: 18px;
+}
+
+nav ul li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav a::after {
+    content: " ▼";
+    font-size: 10px;
+    vertical-align: middle;
+}
+
+/* Dropdown Menu */
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2E7D32;
+    min-width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 0;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+    display: block;
+}
+
+.menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu li a::after {
+    content: "";
+}
+
+nav ul li:hover .menu {
+    display: block;
+}
+
+/* Dark Mode Toggle Button */
+.toggle-dark {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 4px 8px;
+    margin-right: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    white-space: nowrap;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.3s ease, border-color 0.3s;
+}
+
+.toggle-dark:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #ccc;
+}
+
+/* User Menu Styles */
+.user-menu > a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-menu > a::before {
+    content: "👤";
+    font-size: 16px;
+}
+
+.user-menu .menu {
+    min-width: 180px;
+    right: 0;
+    left: auto;
+}
+
+.user-menu .menu li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.user-menu .menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.auth-menu {
+    display: block;
+}
+
+.guest-menu {
+    display: block;
+}
+
+/* User Dropdown */
+.user-dropdown {
+    position: relative;
+}
+
+.user-menu-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.user-menu-trigger:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 8px 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #333;
+    transition: background 0.3s;
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: var(--background) !important;
+    color: var(--text) !important;
+}
+
+/* Header giữ nguyên màu xanh */
+body.dark-mode header {
+    background-color: #2E7D32 !important;
+    color: white !important;
+}
+
+body.dark-mode nav {
+    background-color: #2E7D32 !important;
+}
+
+body.dark-mode nav ul li a {
+    color: white !important;
+}
+
+body.dark-mode .logo {
+    color: white !important;
+}
+
+/* Cards and containers */
+body.dark-mode .container,
+body.dark-mode .content-section,
+body.dark-mode .club-card,
+body.dark-mode .field,
+body.dark-mode .highlight-section,
+body.dark-mode .annual-section,
+body.dark-mode .login-container {
+    background-color: var(--card-light) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid var(--border-dark) !important;
+}
+
+/* Headings */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode .container h1,
+body.dark-mode .container h2,
+body.dark-mode .container h3,
+body.dark-mode .container h4,
+body.dark-mode .slogan,
+body.dark-mode .club-card h3 {
+    color: var(--heading-dark) !important;
+}
+
+/* Text content - ĐÂY LÀ PHẦN QUAN TRỌNG */
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode .container p,
+body.dark-mode .club-card p,
+body.dark-mode .content-section p,
+body.dark-mode span,
+body.dark-mode label,
+body.dark-mode .text,
+body.dark-mode div {
+    color: var(--text-primary) !important;
+}
+
+/* Form elements */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background: var(--card-dark) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-dark) !important;
+}
+
+body.dark-mode .error {
+    color: #ff6b6b !important;
+}
+
+body.dark-mode .dropdown-menu {
+    background: var(--card-light) !important;
+    border: 1px solid var(--border-dark) !important;
+}
+
+body.dark-mode .dropdown-menu li a {
+    color: var(--text-primary) !important;
+}
+
+body.dark-mode .dropdown-menu li a:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Buttons in dark mode */
+body.dark-mode button,
+body.dark-mode .btn,
+body.dark-mode .btn-info,
+body.dark-mode .btn-register {
+    background: var(--primary-dark) !important;
+    color: white !important;
+    border-color: var(--primary-dark) !important;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .btn:hover {
+    background: #388E3C !important;
+}
+
+/* Links in dark mode */
+body.dark-mode a {
+    color: #66BB6A !important;
+}
+
+body.dark-mode a:hover {
+    color: #81C784 !important;
+}
+
+/* Menu dropdown giữ màu trắng */
+body.dark-mode .menu {
+    background-color: #2E7D32 !important;
+}
+
+body.dark-mode .menu li a {
+    color: white !important;
+}
+
+/* Transition Styles - Chỉ áp dụng cho dark mode toggle */
+body.enable-transitions,
+body.enable-transitions header,
+body.enable-transitions nav,
+body.enable-transitions .container,
+body.enable-transitions .content-section,
+body.enable-transitions .club-card,
+body.enable-transitions .field,
+body.enable-transitions .highlight-section,
+body.enable-transitions .annual-section,
+body.enable-transitions .login-container,
+body.enable-transitions h1,
+body.enable-transitions h2,
+body.enable-transitions h3,
+body.enable-transitions h4,
+body.enable-transitions p,
+body.enable-transitions li,
+body.enable-transitions input,
+body.enable-transitions .dropdown-menu {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease !important;
+}

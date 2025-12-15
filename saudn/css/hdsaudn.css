@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+
+body {
+    font-family: "Lexend", sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    background-color: #E8F5E9;
+}
+
+header {
+    background: #2E7D32;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+}
+
+nav ul li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav a::after {
+    content: " ▼";
+    font-size: 10px;
+    vertical-align: middle;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2E7D32;
+    min-width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 0;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+    display: block;
+}
+
+.menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu li a::after {
+    content: "";
+}
+
+nav ul li:hover .menu {
+    display: block;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 34px;
+    color: #2E7D32;
+    margin-bottom: 20px;
+}
+
+.container p {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.swiper-slide img {
+  width: 500px; /* Hoặc giá trị cụ thể như 500px */
+  max-width: 5500px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.event-info {
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.event-info h2 {
+    color: #1B5E20;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.event-info p {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.event-info a {
+    display: inline-block;
+    margin: 6px 10px;
+    padding: 10px 16px;
+    background-color: #388E3C;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.event-info a:hover {
+    background-color: #2E7D32;
+}
+
+.footer {
+    background-color: #2E7D32;
+    color: #fff;
+    padding: 40px 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-column p {
+    margin: 6px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-column a {
+color: #BBDEFB;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-column {
+        margin-bottom: 20px;
+    }
+}
