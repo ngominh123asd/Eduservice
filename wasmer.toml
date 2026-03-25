@@ -1,0 +1,16 @@
+[package]
+name = "ngominh123asd/eduservice"
+version = "0.1.0"
+description = "Eduservice PHP App"
+
+[dependencies]
+"php/php" = "8.3.4"
+
+[fs]
+"/app" = "."
+
+[[command]]
+name = "run"
+module = "php/php:php"
+runner = "https://webc.org/runner/wcgi"
+annotations = { wcg = { dual-cgi-mode = true }, wasi = { main-args = ["-t", "/app"] } }
