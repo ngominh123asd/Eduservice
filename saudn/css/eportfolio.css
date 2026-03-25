@@ -1,22 +1,41 @@
 /* E-Portfolio Styles - Flow Theme */
 
+/* Đảm bảo eportfolio section co giãn theo nội dung thực */
+#eportfolio-section {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    flex-shrink: 0;
+}
+
+/* Khi section trống hoặc chỉ có loading */
+#eportfolio-section:empty,
+#eportfolio-section:has(.spinner),
+#eportfolio-section:has(.empty-state) {
+    min-height: auto !important;
+}
+
 .eportfolio-container {
-    min-height: auto; /* Thay đổi từ 100vh - cho phép co giãn theo nội dung */
+    min-height: 0; /* Cho phép co giãn theo nội dung */
+    height: auto; /* Không giới hạn chiều cao */
+    max-height: none;
     background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #E3F2FD 100%);
     padding: 40px 20px 60px;
     position: relative;
-    overflow-x: hidden;
-    transition: min-height 0.3s ease; /* Smooth transition khi thay đổi chiều cao */
+    overflow: visible; /* Cho phép nội dung hiển thị đầy đủ */
+    /* Đảm bảo container fit nội dung */
+    display: block;
 }
 
-/* Animated Background Waves */
+/* Animated Background Waves - Sửa thành position absolute thay vì fixed */
 .eportfolio-container::before {
     content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    position: absolute; /* Thay đổi từ fixed sang absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(circle, rgba(46, 125, 50, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     animation: flowBackground 60s linear infinite;
@@ -35,9 +54,23 @@
     position: relative;
     z-index: 1;
     /* Đảm bảo wrapper co theo nội dung */
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 40px; /* Thêm padding để có không gian khi kéo thả */
+    display: block;
+    height: auto;
+    min-height: 0;
+    padding-bottom: 40px;
+}
+
+/* Đảm bảo tất cả section con đều co giãn theo nội dung */
+.eportfolio-wrapper > * {
+    flex-shrink: 0;
+}
+
+/* Portfolio Sections không có min-height cố định */
+.portfolio-section,
+.portfolio-hero,
+.portfolio-stats {
+    min-height: 0 !important;
+    height: auto !important;
 }
 
 /* Scroll Animation */

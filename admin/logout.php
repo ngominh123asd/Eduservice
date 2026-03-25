@@ -19,3 +19,4 @@ session_destroy();
 // Chuyển về trang đăng nhập admin
 header("Location: login.php");
 exit();
+?>

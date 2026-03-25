@@ -6,7 +6,7 @@ function redirectUser() {
     // Kiểm tra xem người dùng đã đăng nhập chưa
     if (!isset($_SESSION['user']) || !isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
         // Chưa đăng nhập -> chuyển đến trang chủ công khai
-        header("Location: trangchu/trangchu.html");
+        header("Location: gioithieu/gioithieu.html");
         exit();
     }
     
@@ -24,7 +24,7 @@ function redirectUser() {
     } else {
         // Vai trò không xác định -> đăng xuất và chuyển về trang chủ
         session_destroy();
-        header("Location: trangchu/trangchu.html");
+        header("Location: gioithieu/gioithieu.html");
         exit();
     }
 }

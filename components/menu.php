@@ -65,10 +65,7 @@ function getMenu()
     } else {
         return '
             <li class="guest-menu">
-                <a href="/trangchu/trangchu.html">TRANG CHỦ</a>
-            </li>
-            <li class="guest-menu">
-                <a href="/gioithieu/gioithieu.html">GIỚI THIỆU</a>
+                <a href="/gioithieu/gioithieu.html">TRANG CHỦ</a>
             </li>
             <li class="guest-menu"><a href="/huongdan/huongdan_khach.html">HƯỚNG DẪN</a></li>
             <li class="guest-menu login-link"><a href="/dangnhap/dangnhap.php">ĐĂNG NHẬP</a></li>

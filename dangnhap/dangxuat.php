@@ -5,6 +5,6 @@ session_destroy(); // Hủy toàn bộ session
 
 
 // Chuyển về trang trang chủ (html hoặc php)
-header("Location: ../trangchu/trangchu.html");
+header("Location: ../gioithieu/gioithieu.html");
 exit();
 ?>
