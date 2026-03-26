@@ -68,6 +68,7 @@ function getMenu()
                 <a href="/gioithieu/gioithieu.html">TRANG CHỦ</a>
             </li>
             <li class="guest-menu"><a href="/huongdan/huongdan_khach.html">HƯỚNG DẪN</a></li>
+            <li class="guest-menu login-link"><a href="/dangky/dangky.php">ĐĂNG KÝ</a></li>
             <li class="guest-menu login-link"><a href="/dangnhap/dangnhap.php">ĐĂNG NHẬP</a></li>
         ';
     }

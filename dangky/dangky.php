@@ -1,32 +1,24 @@
 <?php
 session_start();
 
-// Check if user is already logged in using user_id (more reliable)
+// Redirect if user is already logged in
 if (isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
-    error_log("User already logged in, redirecting based on role: " . $_SESSION['role']);
-    
-    switch ($_SESSION['role']) {
-            
-        case 'teacher':
-            header("Location: ../giaovien/trangchu_giaovien.php");
-            exit();
-            
-        case 'student':
-            header("Location: ../saudn/trangchusaudn.php");
-            exit();
+    if ($_SESSION['role'] === 'teacher') {
+        header("Location: ../giaovien/trangchu_giaovien.php");
+    } else {
+        header("Location: ../saudn/trangchusaudn.php");
     }
+    exit();
 }
-
-error_log("Showing login page");
 ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Đăng nhập | EDUSERVICE</title>
+    <title>Đăng ký | EDUSERVICE</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dangnhap.css">
+    <link rel="stylesheet" href="dangky.css">
     <link rel="stylesheet" href="/components/header.css">
     <link rel="stylesheet" href="/components/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -37,8 +29,19 @@ error_log("Showing login page");
     
     <div class="page-content">
         <div class="login-container">
-            <h2>ĐĂNG NHẬP TÀI KHOẢN</h2>
-            <form id="loginForm" action="xulydangnhap.php" method="POST">
+            <h2>ĐĂNG KÝ TÀI KHOẢN (HỌC SINH)</h2>
+            <form id="registerForm" action="xulydangky.php" method="POST">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="fullname" 
+                        name="fullname" 
+                        placeholder="Họ và tên" 
+                        required
+                        autocomplete="name"
+                    >
+                    <i class="fas fa-user"></i>
+                </div>
                 <div class="input-group">
                     <input 
                         type="email" 
@@ -57,12 +60,25 @@ error_log("Showing login page");
                         name="password" 
                         placeholder="Mật khẩu" 
                         required
-                        autocomplete="current-password"
+                        autocomplete="new-password"
                     >
                     <i class="fas fa-lock"></i>
                 </div>
-                <p class="error" id="errorMsg" style="display: none;">Email hoặc mật khẩu không hợp lệ.</p>
-                <button type="submit">Đăng nhập</button>
+                <div class="input-group">
+                    <input 
+                        type="password" 
+                        id="confirm_password" 
+                        name="confirm_password" 
+                        placeholder="Xác nhận mật khẩu" 
+                        required
+                        autocomplete="new-password"
+                    >
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit">Đăng ký</button>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="/dangnhap/dangnhap.php" style="color: #2e7d32; text-decoration: none; font-weight: bold; font-size: 15px;">Đã có tài khoản? Đăng nhập ngay</a>
+                </div>
             </form>
         </div>
     </div>
@@ -83,54 +99,53 @@ error_log("Showing login page");
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
 
-        // Handle error messages - CẬP NHẬT thêm error messages
+        // Handle error messages
         const urlParams = new URLSearchParams(window.location.search);
         const error = urlParams.get('error');
         
         if (error) {
             const errorMessages = {
-                'empty': 'Vui lòng nhập đầy đủ email và mật khẩu',
-                'invalid_email': 'Email phải có đuôi @vnu.edu.vn',
-                'wrong_password': 'Mật khẩu không đúng',
-                'user_not_found': 'Không tìm thấy tài khoản với email này',
-                'account_inactive': 'Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ quản trị viên.',
-                'account_suspended': 'Tài khoản của bạn đã bị tạm ngưng. Vui lòng liên hệ quản trị viên.',
-                'system': 'Có lỗi xảy ra, vui lòng thử lại sau'
+                'empty': 'Vui lòng điền đầy đủ thông tin.',
+                'invalid_email': 'Email phải là địa chỉ @vnu.edu.vn.',
+                'password_mismatch': 'Mật khẩu và xác nhận mật khẩu không khớp.',
+                'email_exists': 'Email này đã được đăng ký. Vui lòng đăng nhập.',
+                'system': 'Có lỗi hệ thống xảy ra, vui lòng thử lại sau.'
             };
             
-            const message = errorMessages[error] || 'Đăng nhập thất bại';
+            const message = errorMessages[error] || 'Đăng ký thất bại';
             
             Swal.fire({
                 icon: 'error',
-                title: 'Lỗi đăng nhập',
+                title: 'Lỗi đăng ký',
                 text: message,
                 confirmButtonColor: '#2E7D32'
             });
         }
-        
-        const success = urlParams.get('success');
-        if (success === 'registered') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Đăng ký thành công',
-                text: 'Chào mừng bạn! Vui lòng đăng nhập với tài khoản vừa tạo.',
-                confirmButtonColor: '#2E7D32'
-            });
-        }
 
-        // Form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        // Form validation
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const fullname = document.getElementById('fullname').value.trim();
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
+            const confirm_password = document.getElementById('confirm_password').value;
 
-            console.log('Form submitting...', {email, password: '***'});
-
-            if (!email || !password) {
+            if (!fullname || !email || !password || !confirm_password) {
                 e.preventDefault();
                 Swal.fire({
                     icon: 'warning',
                     title: 'Cảnh báo',
-                    text: 'Vui lòng nhập đầy đủ thông tin',
+                    text: 'Vui lòng điền đầy đủ thông tin',
+                    confirmButtonColor: '#2E7D32'
+                });
+                return false;
+            }
+
+            if (password !== confirm_password) {
+                e.preventDefault();
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Cảnh báo',
+                    text: 'Mật khẩu xác nhận không khớp',
                     confirmButtonColor: '#2E7D32'
                 });
                 return false;
@@ -138,7 +153,7 @@ error_log("Showing login page");
 
             // Show loading
             Swal.fire({
-                title: 'Đang đăng nhập...',
+                title: 'Đang xử lý...',
                 text: 'Vui lòng đợi',
                 allowOutsideClick: false,
                 showConfirmButton: false,
