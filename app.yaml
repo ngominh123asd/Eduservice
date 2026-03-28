@@ -1,0 +1,6 @@
+kind: wasmer.io/App.v0
+name: eduservice99123
+package: ngominh123asd/eduservice
+volumes:
+  - name: eduservice-data
+    mount: /data

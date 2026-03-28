@@ -6,11 +6,18 @@
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 // Đường dẫn đến file database SQLite
-$db_path = __DIR__ . '/edservices.db';
+// Nếu đang chạy trên Wasmer Edge và có mount được volume vào /data thì ưu tiên dùng nó
+if (is_dir('/data')) {
+    $db_path = '/data/edservices.db';
+} else {
+    // Khởi chạy trên local
+    $db_path = __DIR__ . '/edservices.db';
+}
 
-// Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo
-if (!is_dir(__DIR__)) {
-    mkdir(__DIR__, 0777, true);
+// Kiểm tra xem thư mục đích có tồn tại không, nếu không thì tạo (cho local)
+$dir_path = dirname($db_path);
+if (!is_dir($dir_path)) {
+    mkdir($dir_path, 0777, true);
 }
 
 try {

@@ -1,0 +1,22 @@
+name: Deploy to Wasmer Edge
+
+on:
+  push:
+    branches:
+      - main
+      - master # Hỗ trợ cả hai nhánh mặc định phổ biến
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Wasmer CLI
+        uses: wasmerio/setup-wasmer@v3.1
+
+      - name: Deploy App to Wasmer
+        env:
+          WASMER_TOKEN: ${{ secrets.WASMER_TOKEN }}
+        run: wasmer deploy --non-interactive

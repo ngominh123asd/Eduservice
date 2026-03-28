@@ -1,4 +1,9 @@
 <?php
+// Bổ sung header chống cache để trình duyệt luôn lấy nội dung header mới gắn với session thực
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

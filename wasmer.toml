@@ -13,4 +13,4 @@ description = "Eduservice PHP App"
 name = "run"
 module = "php/php:php"
 runner = "https://webc.org/runner/wcgi"
-annotations = { wcg = { dual-cgi-mode = true }, wasi = { main-args = ["-t", "/app"] } }
+annotations = { wcg = { dual-cgi-mode = true }, wasi = { main-args = ["-d", "auto_prepend_file=/app/session_init.php", "-t", "/app"] } }

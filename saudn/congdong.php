@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Kiểm tra đăng nhập
+if (!isset($_SESSION['user']) || !isset($_SESSION['user_id'])) {
+    header("Location: ../dangnhap/dangnhap.php");
+    exit();
+}
+
 require_once '../db/db_config.php';
 
 // Change $db->query to $pdo->query
@@ -53,7 +60,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 // Load header
-fetch('/components/header.php')
+fetch('/components/header.php', { cache: 'no-store' })
     .then(response => response.text())
     .then(data => {
         const parser = new DOMParser();
