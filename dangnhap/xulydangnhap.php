@@ -14,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Kết nối đến SQLite database
 try {
-    $db = new PDO('sqlite:../db/edservices.db');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    error_log("Database connected successfully");
-} catch (PDOException $e) {
+    require_once __DIR__ . '/../db/db_config.php';
+    $db = $pdo;
+    error_log("Database connected successfully via db_config");
+} catch (Exception $e) {
     error_log("Database connection failed: " . $e->getMessage());
     die("Kết nối đến cơ sở dữ liệu thất bại: " . $e->getMessage());
 }

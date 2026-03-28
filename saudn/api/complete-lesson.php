@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 // Set timezone to Vietnam
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
+if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['student', 'admin', 'teacher'])) {
     echo json_encode(['success' => false, 'message' => 'Unauthorized']);
     exit();
 }

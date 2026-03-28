@@ -9,7 +9,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 error_reporting(E_ALL);
 ini_set('display_errors', 0); // Don't display errors in JSON response
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
+if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['student', 'admin', 'teacher'])) {
     echo json_encode(['success' => false, 'message' => 'Unauthorized']);
     exit();
 }

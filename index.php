@@ -21,6 +21,10 @@ function redirectUser() {
         // Là học sinh -> chuyển đến trang học sinh
         header("Location: saudn/trangchusaudn.php");
         exit();
+    } elseif ($role === 'admin') {
+        // Là admin -> chuyển đến trang admin
+        header("Location: admin/index.php");
+        exit();
     } else {
         // Vai trò không xác định -> đăng xuất và chuyển về trang chủ
         session_destroy();

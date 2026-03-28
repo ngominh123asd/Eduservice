@@ -7,9 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 try {
-    $db = new PDO('sqlite:../db/edservices.db');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
+    require_once __DIR__ . '/../db/db_config.php';
+    $db = $pdo;
+} catch (Exception $e) {
     header("Location: dangky.php?error=system");
     exit();
 }
