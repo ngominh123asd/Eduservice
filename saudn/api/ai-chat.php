@@ -74,11 +74,11 @@ function processAIChat($message, $user_id, $history, $pdo) {
 
 function handleClassQuery($user_id, $pdo) {
     $stmt = $pdo->prepare("
-        SELECT c.*, t.full_name as teacher_name
-        FROM student_classes sc
-        JOIN classes c ON sc.class_id = c.id
+        SELECT c.*, t.fullname as teacher_name
+        FROM class_enrollments ce
+        JOIN classes c ON ce.class_id = c.id
         LEFT JOIN users t ON c.teacher_id = t.id
-        WHERE sc.student_id = ?
+        WHERE ce.user_id = ?
         ORDER BY c.created_at DESC
     ");
     $stmt->execute([$user_id]);
@@ -92,7 +92,7 @@ function handleClassQuery($user_id, $pdo) {
     foreach ($classes as $class) {
         $response .= "• **{$class['class_name']}**\n";
         $response .= "  Giảng viên: {$class['teacher_name']}\n";
-        $response .= "  Mã lớp: {$class['class_code']}\n\n";
+        $response .= "  Mã lớp: " . ($class['code'] ?? 'N/A') . "\n\n";
     }
     
     $response .= "Bạn muốn biết thêm về lớp nào không? 😊";
@@ -101,21 +101,24 @@ function handleClassQuery($user_id, $pdo) {
 }
 
 function handleTaskQuery($user_id, $pdo) {
-    $stmt = $pdo->prepare("
-        SELECT l.*, c.class_name, ch.title as chapter_title
-        FROM lessons l
-        JOIN chapters ch ON l.chapter_id = ch.id
-        JOIN classes c ON ch.class_id = c.id
-        JOIN student_classes sc ON c.id = sc.class_id
-        LEFT JOIN lesson_progress lp ON l.id = lp.lesson_id AND lp.student_id = ?
-        WHERE sc.student_id = ? 
-        AND (lp.completed = 0 OR lp.completed IS NULL)
-        AND (l.end_date IS NULL OR l.end_date >= DATE('now'))
-        ORDER BY l.end_date ASC, l.start_date ASC
-        LIMIT 5
-    ");
-    $stmt->execute([$user_id, $user_id]);
-    $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        $stmt = $pdo->prepare("
+            SELECT a.title, c.class_name, a.due_date as end_date
+            FROM assignments a
+            JOIN classes c ON a.class_id = c.id
+            JOIN class_enrollments ce ON c.id = ce.class_id
+            LEFT JOIN submissions s ON a.id = s.assignment_id AND s.user_id = ?
+            WHERE ce.user_id = ? 
+            AND s.id IS NULL
+            AND (a.due_date IS NULL OR a.due_date >= DATE('now', 'localtime'))
+            ORDER BY a.due_date ASC
+            LIMIT 5
+        ");
+        $stmt->execute([$user_id, $user_id]);
+        $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        return "Hiện chưa có bài tập/nhiệm vụ nào trong hệ thống.";
+    }
     
     if (empty($tasks)) {
         return "🎉 Tuyệt vời! Bạn đã hoàn thành tất cả nhiệm vụ hiện tại!";
@@ -139,13 +142,17 @@ function handleTaskQuery($user_id, $pdo) {
 }
 
 function handleScoreQuery($user_id, $pdo) {
-    $stmt = $pdo->prepare("
-        SELECT AVG(lp.score) as avg_score, COUNT(*) as total_lessons
-        FROM lesson_progress lp
-        WHERE lp.student_id = ? AND lp.score IS NOT NULL
-    ");
-    $stmt->execute([$user_id]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    try {
+        $stmt = $pdo->prepare("
+            SELECT AVG(lp.score) as avg_score, COUNT(*) as total_lessons
+            FROM lesson_progress lp
+            WHERE lp.user_id = ? AND lp.score IS NOT NULL
+        ");
+        $stmt->execute([$user_id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        return "Bạn chưa có điểm số nào. Hãy hoàn thành bài học để nhận điểm! 📊";
+    }
     
     $avg_score = round($result['avg_score'] ?? 0, 1);
     $total = $result['total_lessons'] ?? 0;
@@ -170,20 +177,22 @@ function handleScoreQuery($user_id, $pdo) {
 }
 
 function handleProgressQuery($user_id, $pdo) {
-    $stmt = $pdo->prepare("
-        SELECT 
-            COUNT(DISTINCT l.id) as total_lessons,
-            COUNT(DISTINCT CASE WHEN lp.completed = 1 THEN l.id END) as completed_lessons,
-            SUM(lp.time_spent) as total_time
-        FROM lessons l
-        JOIN chapters ch ON l.chapter_id = ch.id
-        JOIN classes c ON ch.class_id = c.id
-        JOIN student_classes sc ON c.id = sc.class_id
-        LEFT JOIN lesson_progress lp ON l.id = lp.lesson_id AND lp.student_id = ?
-        WHERE sc.student_id = ?
-    ");
-    $stmt->execute([$user_id, $user_id]);
-    $progress = $stmt->fetch(PDO::FETCH_ASSOC);
+    try {
+        $stmt = $pdo->prepare("
+            SELECT 
+                COUNT(DISTINCT l.id) as total_lessons,
+                COUNT(DISTINCT CASE WHEN lp.complete_time IS NOT NULL THEN l.id END) as completed_lessons,
+                SUM(0) as total_time
+            FROM lessons l
+            JOIN class_enrollments ce ON l.class_id = ce.class_id
+            LEFT JOIN lesson_progress lp ON l.id = lp.lesson_id AND lp.user_id = ?
+            WHERE ce.user_id = ?
+        ");
+        $stmt->execute([$user_id, $user_id]);
+        $progress = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        return "Chưa có dữ liệu tiến độ. Hãy bắt đầu bài học đầu tiên! 📈";
+    }
     
     $total = $progress['total_lessons'] ?? 0;
     $completed = $progress['completed_lessons'] ?? 0;
@@ -195,14 +204,13 @@ function handleProgressQuery($user_id, $pdo) {
     
     $response = "📈 **Tiến độ học tập của bạn**:\n\n";
     $response .= "• Hoàn thành: **{$completed}/{$total}** bài ({$percentage}%)\n";
-    $response .= "• Thời gian học: **{$hours}h {$minutes}phút**\n\n";
     
     if ($percentage >= 80) {
-        $response .= "🎯 Tuyệt vời! Bạn gần hoàn thành rồi!";
+        $response .= "\n🎯 Tuyệt vời! Bạn gần hoàn thành rồi!";
     } elseif ($percentage >= 50) {
-        $response .= "👏 Làm tốt lắm! Cố gắng thêm nhé!";
+        $response .= "\n👏 Làm tốt lắm! Cố gắng thêm nhé!";
     } else {
-        $response .= "💪 Hãy tiếp tục cố gắng! Mỗi bước đi đều quan trọng!";
+        $response .= "\n💪 Hãy tiếp tục cố gắng! Mỗi bước đi đều quan trọng!";
     }
     
     return $response;
